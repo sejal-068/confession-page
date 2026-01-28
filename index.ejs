@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>confessionPage</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h3>Confession Wall</h3>
+    <h1> Cornell Confession Wall</h1>
+
+    <form method="post" action="/page">
+        <input class="confession-date" placeholder="Enter date here:" name="createdAt"><br/>
+       <textarea class="confession-input" placeholder="  write my own confession post!" name="content"></textarea>
+       <button>Submit</button>
+   </form>
+  
+  <div class="confession-container">
+   <% for(confession  of confessions){ %>
+        <div class="card">
+            <h3 class="time"><%=confession.createdAt%></h3>
+            <h4 class="content"><%=confession.content%></h4>
+            <a href="http://localhost:8080/page/<%=confession.id%>">View</a>
+            <a href="http://localhost:8080/page/<%=confession.id%>/edit">Edit</a>
+            <form method="post" action="/page/<%=confession.id%>?_method=DELETE">
+               <button>DELETE Post</button>
+            </form>
+           
+        </div>
+    
+       
+    <%} %>
+    </div>
+    </body>
+</html>
